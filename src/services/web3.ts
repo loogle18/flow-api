@@ -1,12 +1,10 @@
 import Web3 from 'web3';
-import dotenv from 'dotenv';
 import {
   IGetBalanceOf,
   IGetCirculatingSupply,
   IGetDecimals,
   IGetTotalSupply,
 } from '../typings/index';
-dotenv.config();
 
 const provider = process.env.PROVIDER_ENDPOINT;
 if (!provider) throw Error('Provider endpoint is required.');
