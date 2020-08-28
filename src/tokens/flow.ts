@@ -34,7 +34,6 @@ export const addresses: string[] = [
   '0xf797dbf406787fb6b31f4a906da05fb8e336e7fa',
   '0x8bfa5a0a0658e2aea7d6486de405de31950e80fc',
   //
-  '0x85566cf91d9c44d8817f89afdb8902b22ae710a7',
   '0xe26a8346b073662d2083cbb777e5bb58f7e271ba',
   '0x12a4cde32693843b83fe8377b997b4a3f22dbad9',
 ];
