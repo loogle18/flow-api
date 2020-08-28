@@ -12,19 +12,25 @@ if (!provider) throw Error('Provider endpoint is required.');
 const web3 = new Web3(new Web3.providers.HttpProvider(provider));
 
 const getTotalSupply: IGetTotalSupply = async contract =>
-  await contract.methods.totalSupply().call();
+  contract.methods.totalSupply().call();
 
 const getBalanceOf: IGetBalanceOf = async (contract, address) =>
-  await contract.methods.balanceOf(address).call();
+  contract.methods.balanceOf(address).call();
 
-const getDecimals: IGetDecimals = async contract => await contract.methods.decimals().call();
+const getDecimals: IGetDecimals = async contract => contract.methods.decimals().call();
 
 const getCirculatingSupply: IGetCirculatingSupply = async (contract, addresses) => {
-  let total = parseInt(await getTotalSupply(contract));
-  for (let i = 0; i < addresses.length; i++)
-    total -= parseInt(await getBalanceOf(contract, addresses[i]));
+  const balancePromises = addresses.map((address) => getBalanceOf(contract, address));
+  const [total, balances] : (string | string[])[] = await Promise.all([
+    getTotalSupply(contract),
+    Promise.all(balancePromises)
+  ]);
+  const circulating = balances.reduce((accum, balance) => {
+    accum -= parseInt(balance);
+    return accum;
+  }, parseInt(total));
 
-  return total;
+  return circulating;
 };
 
 export { getTotalSupply, getBalanceOf, getDecimals, getCirculatingSupply, web3 };
