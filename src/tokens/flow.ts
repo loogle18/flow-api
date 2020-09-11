@@ -38,4 +38,6 @@ export const addresses: string[] = [
   '0x12a4cde32693843b83fe8377b997b4a3f22dbad9',
 ];
 
+export const univ2ContractAddress: string = '0xf86d6fe9e28ed805864e2fca51febfe8beca323c';
+
 export const FLOW = new web3.eth.Contract(abi, tokenAddress);

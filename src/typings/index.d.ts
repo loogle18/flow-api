@@ -13,5 +13,19 @@ interface IGetDecimals {
 interface IGetCirculatingSupply {
   (contract: Contract, addresses: string[]): Promise<number>;
 }
+interface IGetTvl {
+  (wethContract: Contract, flowContract: Contract, univ2ContractAddr: string): Promise<number>;
+}
 
-export { AbiItem, Contract, IGetTotalSupply, IGetBalanceOf, IGetDecimals, IGetCirculatingSupply };
+type TGetTvl = [string, string, number, number, string, string];
+
+export {
+  AbiItem,
+  Contract,
+  IGetTotalSupply,
+  IGetBalanceOf,
+  IGetDecimals,
+  IGetCirculatingSupply,
+  IGetTvl,
+  TGetTvl
+};

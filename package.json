@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.20.0",
     "dotenv": "^8.2.0",
     "fastify": "^3.2.1",
     "fastify-rate-limit": "^4.0.2",
